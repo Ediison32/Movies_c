@@ -194,3 +194,4 @@ D:\Riwi\movies2\moviesSystem\obj\Debug\net9.0\refint\moviesSystem.dll
 D:\Riwi\movies2\moviesSystem\obj\Debug\net9.0\moviesSystem.pdb
 D:\Riwi\movies2\moviesSystem\obj\Debug\net9.0\moviesSystem.genruntimeconfig.cache
 D:\Riwi\movies2\moviesSystem\obj\Debug\net9.0\ref\moviesSystem.dll
+D:\Riwi\movies2\moviesSystem\obj\Debug\net9.0\moviesSystem.sourcelink.json

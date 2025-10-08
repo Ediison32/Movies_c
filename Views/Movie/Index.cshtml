@@ -1,0 +1,19 @@
+@model IEnumerable<moviesSystem.Models.Movie>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    
+    @foreach (var item in Model)
+    {
+    
+        <div class="card h-100 shadow-sm ">
+            <img src="@item.Poster" class="card-img-top" alt="poster">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">@item.Plot</p>
+                <h5 class="card-title">@item.Year</h5>
+                <h5 class="card-title">@item.Genre</h5>
+                <a href="#" class="btn btn-primary">Detalles</a>
+                <a href="#" class="btn btn-primary">Agregar</a>
+            </div>
+        </div>
+    }
+</div>

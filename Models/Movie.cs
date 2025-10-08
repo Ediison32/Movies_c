@@ -9,7 +9,7 @@ public class Movie
     
     public string Title { get; set; } = string.Empty;
     
-    public DateOnly Year { get; set; }
+    public string Year { get; set; }
     
     public string Genre { get; set; } = string.Empty;
     

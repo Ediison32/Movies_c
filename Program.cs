@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MovieSistem.Data;
+using moviesSystem.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 // configuracion para la db 

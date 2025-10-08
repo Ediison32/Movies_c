@@ -2795,19 +2795,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
+    "/home/mylisuthy/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Riwi\\movies2\\moviesSystem\\moviesSystem.csproj",
+      "projectUniqueName": "/home/mylisuthy/Escritorio/Movies_c/moviesSystem.csproj",
       "projectName": "moviesSystem",
-      "projectPath": "D:\\Riwi\\movies2\\moviesSystem\\moviesSystem.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\Riwi\\movies2\\moviesSystem\\obj\\",
+      "projectPath": "/home/mylisuthy/Escritorio/Movies_c/moviesSystem.csproj",
+      "packagesPath": "/home/mylisuthy/.nuget/packages/",
+      "outputPath": "/home/mylisuthy/Escritorio/Movies_c/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/mylisuthy/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -2871,7 +2871,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/mylisuthy/.dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

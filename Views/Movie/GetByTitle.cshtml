@@ -1,0 +1,41 @@
+@model IEnumerable<moviesSystem.Models.Movie>
+
+@{
+    ViewData["Title"] = "Buscar Películas";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">🎬 Buscador de Películas</h1>
+
+    <!-- Formulario de búsqueda -->
+    <form asp-controller="Movie" asp-action="GetByTitle" method="get" class="d-flex justify-content-center mb-5">
+        <input type="text" name="title" class="form-control w-50 me-2" placeholder="Ingresa el nombre de la película..." required />
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    <!-- Mostrar resultados -->
+    @if (Model != null && Model.Any())
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var movie in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@movie.Poster" class="card-img-top" alt="@movie.Title" onerror="this.src='https://via.placeholder.com/300x450?text=No+Image';">
+                        <div class="card-body">
+                            <h5 class="card-title">@movie.Title</h5>
+                            <p class="card-text">
+                                <strong>Año:</strong> @movie.Year <br />
+                                <strong>ID IMDb:</strong> @movie.imdbID
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else if (ViewContext.HttpContext.Request.Query.ContainsKey("title"))
+    {
+        <div class="alert alert-warning text-center">No se encontraron resultados para tu búsqueda.</div>
+    }
+</div>

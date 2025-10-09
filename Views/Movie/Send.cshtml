@@ -1,0 +1,23 @@
+@model IEnumerable<moviesSystem.Models.Movie>
+
+
+<div class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    @foreach (var movie in Model)
+    {
+        <div class="col d-flex justify-content-center">
+            <div class="card shadow-sm h-100" style="max-width: 300px;">
+                <img src="@movie.Poster" class="card-img-top fixed-img" alt="@movie.Title"
+                     onerror="this.src='https://via.placeholder.com/300x450?text=No+Image';">
+                <div class="card-body">
+                    <h5 class="card-title">@movie.Title</h5>
+                    <p class="card-text">
+                        <strong>Año:</strong> @movie.Year <br />
+                        <strong>ID IMDb:</strong> @movie.imdbID<br />
+                    </p>
+                    @* <a href="#" class="btn btn-primary">Detalles</a> *@
+                    <a class="btn btn-danger" onclick="return confirm('seguro que quieres Eliminar ?')" asp-action="Delete" asp-controller="Movie" asp-route-id="@movie.imdbID">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

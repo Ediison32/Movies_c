@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
@@ -19,15 +20,28 @@ public class MovieController : Controller
     // buscar por titulo 
     public async Task<IActionResult> GetByTitle(string title)
     {
-        var ApiUrl = $"https://www.omdbapi.com/?s={title}&apikey=9fe20006";
+        try
+        {
+            var ApiUrl = $"https://www.omdbapi.com/?s={title}&apikey=9fe20006";
 
-        var data = new HttpClient();
-        
-        var respuesta = await data.GetStringAsync(ApiUrl);
+            var data = new HttpClient();
 
-        var Movies =  JsonSerializer.Deserialize<ApiResponse>(respuesta);
+            var respuesta = await data.GetStringAsync(ApiUrl);
 
-        return View("Index", Movies.Search);
+            var Movies = JsonSerializer.Deserialize<ApiResponse>(respuesta);
+
+            return View("Index", Movies.Search);
+
+        }
+        catch (HttpIOException e)
+        {
+            Console.WriteLine("ERROR: error en la coneccion con la Api.  " + e.Message);
+            throw;
+        }
+        catch (Exception e)
+        {
+            return NotFound();
+        }
     }
     
     
@@ -44,19 +58,31 @@ public class MovieController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var rdm = new Random();
-        List<Movie> pelis = new List<Movie>();
-        HttpClient client = new HttpClient();
-        for (int i = 0; i < 10; i++)
+        try
         {
-            char letter = (char)rdm.Next('A', 'Z' + 1);
-            char secondletter = (char)rdm.Next('A', 'Z' + 1);
-            string apiurl = $"https://www.omdbapi.com/?t={letter}{secondletter}&apikey=9fe20006";
-            var respuesta = await client.GetStringAsync(apiurl);
-            Movie? peli = JsonSerializer.Deserialize<Movie>(respuesta);
-            pelis.Add(peli);
+            var rdm = new Random();
+            List<Movie> pelis = new List<Movie>();
+            HttpClient client = new HttpClient();
+            for (int i = 0; i < 10; i++)
+            {
+                char letter = (char)rdm.Next('A', 'Z' + 1);
+                char secondletter = (char)rdm.Next('A', 'Z' + 1);
+                string apiurl = $"https://www.omdbapi.com/?t={letter}{secondletter}&apikey=9fe20006";
+                var respuesta = await client.GetStringAsync(apiurl);
+                Movie? peli = JsonSerializer.Deserialize<Movie>(respuesta);
+                pelis.Add(peli);
+            }
+
+            return View(pelis);
         }
-        return View(pelis);
+        catch (HttpIOException)
+        {
+            return View("Index");
+        }
+        catch (Exception e)
+        {
+            return NotFound();
+        }
     }
     
     

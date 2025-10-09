@@ -26,8 +26,6 @@ public class MovieController : Controller
         var respuesta = await data.GetStringAsync(ApiUrl);
 
         var Movies =  JsonSerializer.Deserialize<ApiResponse>(respuesta);
-        
-        // return View(Movies.Search);
 
         return View("Index", Movies.Search);
     }
@@ -46,7 +44,19 @@ public class MovieController : Controller
 
     public async Task<IActionResult> Index()
     {
-        return View();
+        var rdm = new Random();
+        List<Movie> pelis = new List<Movie>();
+        HttpClient client = new HttpClient();
+        for (int i = 0; i < 10; i++)
+        {
+            char letter = (char)rdm.Next('A', 'Z' + 1);
+            char secondletter = (char)rdm.Next('A', 'Z' + 1);
+            string apiurl = $"https://www.omdbapi.com/?t={letter}{secondletter}&apikey=9fe20006";
+            var respuesta = await client.GetStringAsync(apiurl);
+            Movie? peli = JsonSerializer.Deserialize<Movie>(respuesta);
+            pelis.Add(peli);
+        }
+        return View(pelis);
     }
     
     
